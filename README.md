@@ -40,7 +40,7 @@ smart-pdf-chatbot/
 
 
 
-![Chat Mode Preview](chat.jpg)
+![Chat Mode Preview](chat.JPG)
 ![Summary Mode Preview](summarize.JPG)
 
 ---
