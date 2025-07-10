@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+
+# Environment Variables
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Streamlit cache
+.streamlit/
+
+# VS Code
+.vscode/
