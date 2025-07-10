@@ -37,12 +37,6 @@ smart-pdf-chatbot/
 └── README.md                # This file 📝
 
 ````
-
-
-
-![Chat Mode Preview](chat.JPG)
-![Summary Mode Preview](summarize.JPG)
-
 ---
 
 ## ⚙️ Installation & Setup
@@ -121,6 +115,9 @@ To deploy your own:
 * Class notes & assignments
 
 ---
+![Chat Mode Preview](chat.JPG)
+![Summary Mode Preview](summarize.JPG)
+
 
 ## 🙌 Credits
 
