@@ -25,12 +25,25 @@ if uploaded_files:
         query = st.text_input("💬 Ask a question about the PDF(s)")
         if query:
             with st.spinner("🔍 Finding answer..."):
-                qa_chain = get_qa_chain(vectorstore)
-                result = qa_chain.run(query)
-                st.success(result)
+                try:
+                    qa_chain = get_qa_chain(vectorstore)
+
+                    # 👇 Manually fetch relevant docs to log length
+                    relevant_docs = vectorstore.as_retriever(search_kwargs={"k": 2}).get_relevant_documents(query)
+                    print(f"[DEBUG] Retrieved {len(relevant_docs)} document chunks for query.")
+
+                    result = qa_chain.run(query)
+                    st.success(result)
+                except Exception as e:
+                    st.error("❌ Something went wrong while answering your question.")
+                    st.exception(e)
 
     elif chat_mode == "Summarize PDF":
         if st.button("📝 Generate Summary"):
             with st.spinner("🧠 Summarizing content..."):
-                summary = get_summary_chain(all_docs)
-                st.info(summary)
+                try:
+                    summary = get_summary_chain(all_docs)
+                    st.info(summary)
+                except Exception as e:
+                    st.error("❌ Failed to summarize the document.")
+                    st.exception(e)
