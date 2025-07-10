@@ -10,7 +10,8 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 # Function to create FAISS vectorstore from documents
 def create_vectorstore(documents):
     embeddings = HuggingFaceEmbeddings(
-        model_name="sentence-transformers/all-MiniLM-L6-v2"
+        model_name="sentence-transformers/all-MiniLM-L6-v2",
+        model_kwargs={"device": "cpu"}
     )
     vectorstore = FAISS.from_documents(documents, embeddings)
     return vectorstore
@@ -19,7 +20,7 @@ def create_vectorstore(documents):
 # Function to set up RetrievalQA chain
 def get_qa_chain(vectorstore):
     llm = get_groq_llm()
-    retriever = vectorstore.as_retriever()
+    retriever = vectorstore.as_retriever(search_kwargs={"k":2})
     qa_chain = RetrievalQA.from_chain_type(
         llm=llm,
         retriever=retriever,
@@ -46,8 +47,8 @@ def get_summary_chain(documents):
 
     # Split documents into smaller chunks using RecursiveCharacterTextSplitter
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1000,
-        chunk_overlap=150
+        chunk_size=500,
+        chunk_overlap=100
     )
 
     chunks = []
