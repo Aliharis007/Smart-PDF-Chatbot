@@ -126,7 +126,6 @@ To deploy your own:
 * [Streamlit](https://streamlit.io/)
 * [HuggingFace Embeddings](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)
 
----
 
 ## 📬 Contact
 
